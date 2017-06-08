@@ -19,6 +19,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 #find_package(Git REQUIRED)
 #include(GetVersionFromGit)
 #set(PROJ_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+
 set(PROJ_VERSION "1.0.0")
 set(PROJ_REQUIRES "SDL2")
 
@@ -52,26 +53,9 @@ find_package(GLEW REQUIRED)
     #message(WARNING "Config for doxygen not found. If you want to make documentation then add file with name 'Doxyfile' in ${CMAKE_SOURCE_DIR}.  Note: doxygen must generate documentation in ${CMAKE_SOURCE_DIR}/docs/html")
 #endif()
 
-#find_package(GTest)
-#find_package(GMock)
-#if(NOT GTEST_FOUND OR NOT GMOCK_FOUND)
-    #message(WARNING "GTest or/and GMock not found. You can not build tests")
-    #set(GTEST_INCLUDE_DIR "/not/found")
-    #set(GMOCK_INCLUDE_DIR "/not/found")
-    #set(GTEST_LIBRARY "/not/found")
-    #set(GMOCK_LIBRARY "/not/found")
-#endif()
-
-#include_directories(${GMOCK_INCLUDE_DIR} ${GTEST_INCLUDE_DIR})
 include_directories(${OPENGL_INCLUDE_DIR} ${SDL2_INCLUDE_DIR} ${GLEW_INCLUDE_DIR})
 
-message("-------------------")
-message(${OPENGL_INCLUDE_DIR})
-message(${OPENGL_LIBRARIES})
-
 aux_source_directory(${SOURCE_DIRS} SOURCES)
-#aux_source_directory(${TEST_SOURCE_DIRS} TEST_SOURCES)
-#aux_source_directory(${ATEST_SOURCE_DIRS} ATEST_SOURCES)
 
 add_library(${PROJECT} SHARED ${SOURCES})
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
